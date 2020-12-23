@@ -1,8 +1,8 @@
-###PHP Symfony Library app
+### PHP Symfony Library app
 
 CRUD service for working with the library database.
 
-#####Data model for the book:
+##### Data model for the book:
 - Name
 - Author
 - Description
@@ -10,6 +10,6 @@ CRUD service for working with the library database.
 - Publication year
 
 
-#####Main functionality:
+##### Main functionality:
 - Adding, editing and viewing the list of authors, adding, editing books
 - List of books filtered by all properties
