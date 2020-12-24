@@ -125,4 +125,8 @@ class Book
 
         return $this;
     }
+
+    public function __toString(){
+        return ($this->Label. ' ('. $this->PubYear.')');
+    }
 }

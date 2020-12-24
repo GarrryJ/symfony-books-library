@@ -78,6 +78,9 @@
     "doctrine/sql-formatter": {
         "version": "1.1.1"
     },
+    "friendsofphp/proxy-manager-lts": {
+        "version": "v1.0.0"
+    },
     "jms/metadata": {
         "version": "2.4.0"
     },
@@ -101,9 +104,6 @@
     },
     "nikic/php-parser": {
         "version": "v4.10.4"
-    },
-    "ocramius/proxy-manager": {
-        "version": "2.10.0"
     },
     "php": {
         "version": "7.4"
@@ -440,8 +440,5 @@
     },
     "twig/twig": {
         "version": "v3.1.1"
-    },
-    "webimpress/safe-writer": {
-        "version": "2.1.0"
     }
 }

@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\AdminBundle\Form\Type\ModelAutocompleteType;
 
 final class BookAdmin extends AbstractAdmin
 {
@@ -18,6 +19,7 @@ final class BookAdmin extends AbstractAdmin
         $datagridMapper
             ->add('id')
             ->add('Label')
+            ->add('Authors')
             ->add('Description')
             ->add('Cover')
             ->add('PubYear')
@@ -29,6 +31,7 @@ final class BookAdmin extends AbstractAdmin
         $listMapper
             ->add('id')
             ->add('Label')
+            ->add('Authors')
             ->add('Description')
             ->add('Cover')
             ->add('PubYear')
@@ -44,8 +47,8 @@ final class BookAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('id')
             ->add('Label')
+            ->add('Authors', ModelAutocompleteType::class, array('multiple' => true, 'by_reference' => true, 'property' => 'Name'))
             ->add('Description')
             ->add('Cover')
             ->add('PubYear')
@@ -57,6 +60,7 @@ final class BookAdmin extends AbstractAdmin
         $showMapper
             ->add('id')
             ->add('Label')
+            ->add('Authors')
             ->add('Description')
             ->add('Cover')
             ->add('PubYear')

@@ -16,7 +16,7 @@ final class AuthorAdmin extends AbstractAdmin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper): void
     {
         $datagridMapper
-            ->add('id')
+            //->add('id')
             ->add('Name')
             ;
     }
@@ -38,7 +38,7 @@ final class AuthorAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $formMapper): void
     {
         $formMapper
-            ->add('id')
+            //->add('id')
             ->add('Name')
             ;
     }
