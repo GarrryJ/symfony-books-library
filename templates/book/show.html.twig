@@ -16,6 +16,14 @@
                 <td>{{ book.Label }}</td>
             </tr>
             <tr>
+                <th>Author(-s)</th>
+                <td>
+                    {% for author in book.Authors %}
+                            <a href="{{ path('author_show', {'id': author.id}) }}">{{ author }}</a>
+                    {% endfor %}
+                </td>
+            </tr>
+            <tr>
                 <th>Description</th>
                 <td>{{ book.Description }}</td>
             </tr>
@@ -24,7 +32,7 @@
                 <td>{{ book.Cover }}</td>
             </tr>
             <tr>
-                <th>PubYear</th>
+                <th>Publication year</th>
                 <td>{{ book.PubYear }}</td>
             </tr>
         </tbody>

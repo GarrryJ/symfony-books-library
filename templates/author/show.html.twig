@@ -15,6 +15,18 @@
                 <th>Name</th>
                 <td>{{ author.Name }}</td>
             </tr>
+            <tr>
+                <th>Author's books</th>
+                {% for book in author.Books %}
+                    <td>
+                        <a href="{{ path('book_show', {'id': book.id}) }}">{{ book }}</a>
+                    </td>
+                {% else %}
+                    <tr>
+                        <td colspan="6">empty</td>
+                    </tr>
+                {% endfor %}
+            </tr>
         </tbody>
     </table>
 

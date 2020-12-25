@@ -1,18 +1,19 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Book index{% endblock %}
+{% block title %}BOOKS{% endblock %}
 
 {% block body %}
-    <h1>Book index</h1>
+    <h1>List of books</h1>
 
     <table class="table">
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Label</th>
+                <th>Title</th>
+                <th>Author(-s)</th>
                 <th>Description</th>
                 <th>Cover</th>
-                <th>PubYear</th>
+                <th>Publication year</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -21,6 +22,11 @@
             <tr>
                 <td>{{ book.id }}</td>
                 <td>{{ book.Label }}</td>
+                <td>
+                    {% for author in book.Authors %}
+                        <a href="{{ path('author_show', {'id': author.id}) }}">{{ author }}</a>
+                    {% endfor %}
+                </td>
                 <td>{{ book.Description }}</td>
                 <td>{{ book.Cover }}</td>
                 <td>{{ book.PubYear }}</td>
@@ -31,11 +37,11 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">empty</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('book_new') }}">Create new</a>
+    <a href="{{ path('book_new') }}">Add the book...</a>
 {% endblock %}
