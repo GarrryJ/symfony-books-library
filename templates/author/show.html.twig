@@ -22,9 +22,7 @@
                         <a href="{{ path('book_show', {'id': book.id}) }}">{{ book }}</a>
                     </td>
                 {% else %}
-                    <tr>
-                        <td colspan="6">empty</td>
-                    </tr>
+                    <td colspan="6">empty</td>
                 {% endfor %}
             </tr>
         </tbody>
