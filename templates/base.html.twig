@@ -3,9 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
     </head>
     <body>
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('main.css')  }}">
+        {% endblock %}
         {% block body %}{% endblock %}
         {% block javascripts %}{% endblock %}
     </body>
