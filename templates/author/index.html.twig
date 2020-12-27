@@ -5,6 +5,10 @@
 {% block body %}
     <h1>List of authors</h1>
 
+    <a href="{{ path('book_index') }}">To books list</a>
+    ||
+    <a href="{{ path('author_new') }}">Add a new author...</a>
+
     <table class="table">
         <thead>
             <tr>
@@ -30,6 +34,4 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('author_new') }}">Add the author...</a>
 {% endblock %}
