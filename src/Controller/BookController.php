@@ -9,6 +9,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 /**
  * @Route("/book")
@@ -35,6 +39,22 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $coverFile = $form->get('Cover')->getData();
+
+            if ($coverFile) {
+                $safeFilename = $form->get('Label')->getData();
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$coverFile->guessExtension();
+                try {
+                    $coverFile->move(
+                        $this->getParameter('covers_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                $book->setCover($newFilename);
+            }
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($book);
             $entityManager->flush();
@@ -67,6 +87,23 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
+            $coverFile = $form->get('Cover')->getData();
+
+            if ($coverFile) {
+                $safeFilename = $form->get('Label')->getData();
+                $newFilename = $safeFilename.'-'.uniqid().'.'.$coverFile->guessExtension();
+                try {
+                    $coverFile->move(
+                        $this->getParameter('covers_directory'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                }
+
+                $book->setCover($newFilename);
+            }
+
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('book_index');

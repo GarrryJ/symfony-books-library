@@ -44,6 +44,8 @@ class Book
      */
     private $PubYear;
 
+    private $CoverPath;
+
     public function __construct()
     {
         $this->Authors = new ArrayCollection();
@@ -110,8 +112,15 @@ class Book
     public function setCover(?string $Cover): self
     {
         $this->Cover = $Cover;
+        $this->CoverPath = 'images/'.$Cover;
 
         return $this;
+    }
+
+    public function getCoverPath(): ?string
+    {
+        $this->CoverPath = 'images/'.$this->Cover;
+        return $this->CoverPath;
     }
 
     public function getPubYear(): ?int

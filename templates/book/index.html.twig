@@ -32,7 +32,7 @@
                     {% endfor %}
                 </td>
                 <td>{{ book.Description }}</td>
-                <td>{{ book.Cover }}</td>
+                <td><img src="{{ asset(book.CoverPath)  }}" width="200"></td>
                 <td>{{ book.PubYear }}</td>
                 <td>
                     <a href="{{ path('book_show', {'id': book.id}) }}">show</a>
