@@ -13,11 +13,11 @@
         <thead>
             <tr>
                 <th>Id</th>
-                <th>Title</th>
-                <th>Author(-s)</th>
+                <th>Title <a href="{{ path('book_sort', {'column': 'Label', 'sort': 'asc'}) }}">▲</a><a href="{{ path('book_sort', {'column': 'Label', 'sort': 'desc'}) }}">▼</a></th>
+                <th>Author(-s) <a href="{{ path('book_authors', {'count': '1'}) }}">1</a> <a href="{{ path('book_authors', {'count': '2'}) }}">2</a> <a href="{{ path('book_authors', {'count': '3'}) }}">3</a> <a href="{{ path('book_authors', {'count': '4'}) }}">4</a> <a href="{{ path('book_authors', {'count': '5'}) }}">5</a></th>
                 <th>Description</th>
                 <th>Cover</th>
-                <th>Publication year</th>
+                <th>Publication year <a href="{{ path('book_sort', {'column': 'PubYear', 'sort': 'asc'}) }}">▲</a><a href="{{ path('book_sort', {'column': 'PubYear', 'sort': 'desc'}) }}">▼</a></th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -27,6 +27,7 @@
                 <td>{{ book.id }}</td>
                 <td>{{ book.Label }}</td>
                 <td>
+                    ({{ book.Authors.count }}) 
                     {% for author in book.Authors %}
                         <a href="{{ path('author_show', {'id': author.id}) }}">{{ author }}</a>
                     {% endfor %}

@@ -26,6 +26,19 @@ class AuthorController extends AbstractController
     }
 
     /**
+     * @Route("/sort={sort}", name="author_sort", methods={"GET"})
+     */
+    public function indexSort(AuthorRepository $authorRepository, $sort): Response
+    {
+        return $this->render('author/index.html.twig', [
+            'authors' => $authorRepository->findBy(
+                array(), 
+                array('Name' => $sort)
+            )
+        ]);
+    }
+
+    /**
      * @Route("/new", name="author_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response

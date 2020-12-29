@@ -19,6 +19,20 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
+    public function findByAuthors($count)
+    {
+        $selectBook = $this->getEntityManager()->createQueryBuilder();
+        $selectBook    
+            ->select('b') 
+            ->from('App:Book','b')
+            ->leftJoin('b.Authors','a')
+            ->having('COUNT(a.id) = '.$count)
+            ->groupBy('b.id');
+            return $selectBook 
+                ->getQuery()
+                ->getResult();
+    }
+
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */

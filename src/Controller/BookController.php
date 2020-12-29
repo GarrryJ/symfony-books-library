@@ -10,8 +10,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 /**
@@ -25,7 +23,30 @@ class BookController extends AbstractController
     public function index(BookRepository $bookRepository): Response
     {
         return $this->render('book/index.html.twig', [
-            'books' => $bookRepository->findAll(),
+            'books' => $bookRepository->findAll()
+        ]);
+    }
+
+    /**
+     * @Route("/column={column}+sort={sort}", name="book_sort", methods={"GET"})
+     */
+    public function indexSort(BookRepository $bookRepository, $column, $sort): Response
+    {
+        return $this->render('book/index.html.twig', [
+            'books' => $bookRepository->findBy(
+                array(), 
+                array($column => $sort)
+            )
+        ]);
+    }
+
+    /**
+     * @Route("/authors_count={count}", name="book_authors", methods={"GET"})
+     */
+    public function indexAuthors(BookRepository $bookRepository, $count): Response
+    {
+        return $this->render('book/index.html.twig', [
+            'books' => $bookRepository->findByAuthors($count)
         ]);
     }
 
